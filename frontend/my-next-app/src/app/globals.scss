@@ -1,0 +1,127 @@
+
+
+@import './styles/variables.module.scss';
+
+@import './styles/variables.module.scss';
+
+/* Breakpoints for Mobile Sizes */
+$mobile-small: 320px;  /* Small mobile devices */
+$mobile-medium: 480px; /* Medium mobile devices */
+$mobile-large: 768px;  /* Large mobile devices */
+
+/* Light Theme */
+.light-theme {
+  background-color: $background-color; /* Light Blue */
+  color: $primary-color; /* Dark Teal */
+
+  .mainContent {
+    background-color: $secondary-color; /* Light Teal */
+    color: $primary-color; /* Dark Teal */
+
+   
+  }
+
+  .sidebar {
+    background-color: $secondary-color; /* Light Teal */
+    color: $primary-color; /* Dark Teal */
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+
+    /* Mobile Small (S) */
+   
+  }
+
+  .title {
+    color: $highlight-color; /* Coral */
+
+  
+  }
+
+  .themeToggleButton {
+    background: linear-gradient(135deg, $highlight-color, $accent-color); /* Gradient background */
+    color: white; /* Text color */
+    padding: 10px 20px; /* Add padding for a larger button */
+    border: none; /* Remove border */
+    border-radius: 50px; /* Make the button rounded */
+    font-size: $font-size-medium; /* Adjust font size */
+    font-weight: bold; /* Make the text bold */
+    cursor: pointer; /* Add pointer cursor */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+
+    /* Mobile Small (S) */
+   
+
+    &:hover {
+      background: linear-gradient(135deg, darken($highlight-color, 10%), darken($accent-color, 10%)); /* Darken gradient on hover */
+      transform: scale(1.05); /* Slightly enlarge the button */
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+    }
+
+    &:active {
+      transform: scale(0.95); /* Slightly shrink the button when clicked */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduce shadow on click */
+    }
+  }
+}
+
+
+/* Dark Theme */
+.dark-theme {
+  background-color: $primary-color; /* Dark Teal */
+  color: $background-color; /* Light Blue */
+
+  .mainContent {
+    background-color: $highlight-color; /* Coral */
+    color: $background-color; /* Light Blue */
+
+ 
+    
+  }
+
+  .sidebar {
+    background-color: $primary-color; /* Dark Teal */
+    color: $background-color; /* Light Blue */
+    box-shadow: 2px 0 6px rgba(255, 255, 255, 0.1);
+
+   
+  }
+
+  .title {
+    color: $accent-color; /* Peach */
+
+   
+  }
+
+  .themeToggleButton {
+    background: linear-gradient(135deg, $accent-color, $highlight-color); /* Gradient background */
+    color: $primary-color; /* Text color */
+    padding: 10px 20px; /* Add padding for a larger button */
+    border: none; /* Remove border */
+    border-radius: 50px; /* Make the button rounded */
+    font-size: $font-size-medium; /* Adjust font size */
+    font-weight: bold; /* Make the text bold */
+    cursor: pointer; /* Add pointer cursor */
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Add a subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+
+   
+    &:hover {
+      background: linear-gradient(135deg, lighten($accent-color, 10%), lighten($highlight-color, 10%)); /* Lighten gradient on hover */
+      transform: scale(1.05); /* Slightly enlarge the button */
+      box-shadow: 0 6px 8px rgba(255, 255, 255, 0.2); /* Enhance shadow on hover */
+    }
+
+    &:active {
+      transform: scale(0.95); /* Slightly shrink the button when clicked */
+      box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Reduce shadow on click */
+    }
+  }
+}
+
+/* Smooth transition for theme changes */
+body, .light-theme, .dark-theme {
+  transition: background-color 0.3s, color 0.3s;
+  font-family: 'Inter', sans-serif;
+
+ 
+}

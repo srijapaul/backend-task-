@@ -1,0 +1,36 @@
+@import '../styles/variables.module.scss';
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  height: 100vh;
+  @media (max-width: 1024px) {
+    grid-template-columns: 200px 1fr; /* Narrower sidebar for tablets */
+  }
+
+  /* Mobile Medium (M) */
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; /* Stack content vertically */
+    grid-template-rows: auto 1fr; /* Sidebar on top */
+  } 
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr; /* Stack content vertically */
+    grid-template-rows: auto 1fr; /* Sidebar on top */
+
+  }
+
+  .mainContent {
+    padding: 20px;
+    overflow-y: auto;
+
+    .title {
+      font-size: $font-size-large;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .taskList {
+      margin-top: 20px;
+    }
+  }
+}

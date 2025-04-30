@@ -1,0 +1,61 @@
+@import "../../styles/variables.module.scss";
+
+
+
+.add-task-container {
+  background-color: $background-color;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 0 auto;
+
+  
+
+}
+
+.light-theme {
+  background-color: $background-color;
+  color: $primary-color;
+}
+
+.dark-theme {
+  background-color: $primary-color;
+  color: $background-color;
+}
+
+.add-task-form {
+  display: flex;
+  flex-direction: column;
+
+  input,
+  select,
+  textarea {
+    margin-bottom: 8px;
+    padding: 8px;
+    border: 1px solid $secondary-color;
+    border-radius: 5px;
+    font-size: $font-size-small;
+
+    &:focus {
+      border-color: $highlight-color;
+    }
+
+   
+  }
+
+  button {
+    background-color: $highlight-color;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($highlight-color, 10%);
+    }
+
+    
+  }
+}

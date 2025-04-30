@@ -1,0 +1,19 @@
+// Color Palette
+$primary-color: #006d77; // Dark Teal
+$secondary-color: #83c5be; // Light Teal
+$background-color: #edf6f9; // Light Blue
+$accent-color: #ffddd2; // Peach
+$highlight-color: #e29578; // Coral
+
+// Typography
+$title-color: $highlight-color;
+$font-size-large: 24px;
+$font-size-medium: 18px;
+$font-size-small: 14px;
+
+// Example Title Styling
+.title {
+  color: $title-color;
+  font-size: $font-size-large;
+  font-weight: bold;
+}

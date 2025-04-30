@@ -1,0 +1,59 @@
+
+
+@import "../../styles/variables.module.scss";
+
+.sidebar {
+  //background-color: $primary-color;
+  //color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  width: 70px;
+  height: 70vh;
+  position: fixed;
+  top: 50px; // Adjusted to account for the header height
+  left: 50px;
+
+  @media (min-width: 1025px) {
+    width: 70px;
+  }
+  @media (min-width:769px)and (max-width:1024px){
+    width:60px;
+    height: 60px;
+    left:30px;
+    padding:15px;
+  }
+  @media (min-width: 481px) and (max-width: 768px) {
+    width: 50px; /* Thinner sidebar for medium mobile devices */
+    height: 50vh; /* Adjust height */
+    left: 20px; /* Adjust position */
+    padding: 10px;
+  }
+  @media (max-width: 480px) {
+    width: 40px; /* Thinner sidebar for small mobile devices */
+    height: 40vh; /* Adjust height */
+    left: 10px; /* Adjust position */
+    padding: 5px;
+  }
+
+  .sidebar-item {
+    padding: 10px;
+    border-radius: 8px;
+    //background-color: $secondary-color;
+    //color:$primary-color;
+    margin: 5px 0;
+    font-size: $font-size-medium;
+    cursor: pointer;
+    transition: background-color 0.3s ;
+    
+    
+    
+    &:hover {
+      background-color: $highlight-color;
+      color:#fff
+    }
+  }
+}

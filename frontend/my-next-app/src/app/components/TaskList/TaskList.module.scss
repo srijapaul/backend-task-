@@ -1,0 +1,91 @@
+@import "../../styles/variables.module.scss";
+
+.task-container {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap:10px;
+  background-color: $background-color;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  @media (max-width: 769px) {
+    grid-template-columns: repeat(2,1fr);
+    gap:5px;
+    padding: 10px;
+  }
+  @media (min-width:769px) and (max-width:1024px){
+    grid-template-columns: repeat(3,1fr);
+    gap:10px;
+    padding: 15px;
+  }
+  
+}
+
+.task-card {
+  background-color: $secondary-color;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width:200px;
+    height: auto;
+    min-height: 200px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+
+  h3 {
+    color: $primary-color;
+    font-size: $font-size-small;
+    margin-bottom: 5px;
+  }
+
+  p {
+    color: $primary-color;
+    font-size: $font-size-small;
+    margin-bottom: 5px;
+  }
+  .task-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  @mixin button-style($bg-color, $hover-color) {
+    background-color: $bg-color;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: $font-size-small;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $hover-color;
+    }
+  }
+  .task-buttons button {
+    @include button-style($highlight-color, darken($highlight-color, 10%));
+  }
+  
+  .no-tasks {
+    color: $primary-color;
+    font-size: $font-size-medium;
+    text-align: center;
+    margin-top: 20px;
+  }}
+  .load-more-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: $highlight-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .load-more-button:hover {
+    background-color: $highlight-color;
+  }
