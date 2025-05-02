@@ -46,7 +46,10 @@ jobs:
       - name: Wait for backend
         run: wait-on http://localhost:4000
 
-      - name: Seed test user
+      - name: Extra wait to let backend connect DB
+        run: sleep 5
+
+      - name: Seed test user (optional fallback)
         run: |
           curl -X POST http://localhost:4000/auth/register \
             -H "Content-Type: application/json" \
@@ -70,3 +73,5 @@ jobs:
         run: |
           cd frontend/my-next-app
           npx cypress run
+        env:
+          CYPRESS_baseUrl: "http://localhost:3000"
