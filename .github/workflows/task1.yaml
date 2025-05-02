@@ -1,77 +1,17 @@
-name: CI
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
+name: Cypress Tests
+on:[push]
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    services:
-      mongo:
-        image: mongo:4.4
-        ports:
-          - 27017:27017
-        options: >-
-          --health-cmd "mongo --eval 'db.runCommand({ ping: 1 })'"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
+  cypress-run:
+    runs-on:ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install wait-on
-        run: npm install -g wait-on
-
-      - name: Install backend dependencies
-        run: |
-          cd backend/form
-          npm ci
-
-      - name: Start backend
-        run: |
-          cd backend/form
-          npm run start:dev &
-        shell: bash
-
-      - name: Wait for backend
-        run: wait-on http://localhost:4000
-
-      - name: Extra wait to let backend connect DB
-        run: sleep 5
-
-      - name: Seed test user (optional fallback)
-        run: |
-          curl -X POST http://localhost:4000/auth/register \
-            -H "Content-Type: application/json" \
-            -d '{"email":"admin@example.com","password":"test1234","role":"admin"}' || true
-
-      - name: Install frontend dependencies
-        run: |
-          cd frontend/my-next-app
-          npm ci
-
-      - name: Start frontend
-        run: |
-          cd frontend/my-next-app
-          npm run dev &
-        shell: bash
-
-      - name: Wait for frontend
-        run: wait-on http://localhost:3000
-
-      - name: Run Cypress tests
-        run: |
-          cd frontend/my-next-app
-          npx cypress run
-        env:
-          CYPRESS_baseUrl: "http://localhost:3000"
+      -name:Checkout
+      uses:actions/checkout@v2
+      -name:Cypress run
+      uses:Cypress run
+      with:
+        build:npm run build
+        start:npm start
+        record:true
+      env:
+        CYPRESS_RECORD_KEY:${{secrets.CYPRESS_RECORD_KEY}}
+        GITHUB_TOKEN:${{secrets.GITHUB_TOKEN}
