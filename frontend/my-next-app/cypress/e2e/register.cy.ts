@@ -13,18 +13,13 @@ describe('Register Form', () => {
     cy.get('[data-cy="register-email"]').type(email);
     cy.get('[data-cy="register-password"]').type(password);
     cy.get('[data-cy="register-confirm"]').type(password);
-<<<<<<< HEAD
     cy.get('[data-cy="register-role"]').select(randomRole);
     cy.get('[data-cy="register-submit"]').click();
 
-    cy.wait('@registerRequest').its('response.statusCode').should('eq', 201); // or 200
+    // Ensure the request succeeds with a valid status code
+    cy.wait('@registerRequest').its('response.statusCode').should('eq', 201);
+
+    // Verify the redirection URL includes '/login'
     cy.url({ timeout: 10000 }).should('include', '/login');
-=======
-    cy.get('[data-cy="register-role"]').select(randomroles);
-    cy.get('[data-cy="register-submit"]').click()
-    cy.wait(2000)
-    cy.url().should('include', '/login');
- 
->>>>>>> fedef55 (update cypress tests)
   });
 });
