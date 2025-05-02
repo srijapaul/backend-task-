@@ -59,14 +59,11 @@ jobs:
 
       - name: Wait for frontend
         run: wait-on http://localhost:3000
-
-      # Optional: Seed test user for login
       - name: Seed test user
         run: |
-          curl -X POST http://localhost:4000/auth/register \
-            -H "Content-Type: application/json" \
-            -d '{"email":"admin@example.com","password":"test1234"}' || true
-
+              curl -X POST http://localhost:4000/auth/register \
+              -H "Content-Type: application/json" \
+              -d '{"email":"admin@example.com","password":"test1234","role":"admin"}' || true
       - name: Run Cypress tests
         run: |
           cd frontend/my-next-app
