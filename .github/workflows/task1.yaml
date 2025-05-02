@@ -29,6 +29,9 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install wait-on
+        run: npm install -g wait-on
+
       - name: Install backend dependencies
         run: |
           cd backend/form
@@ -38,7 +41,10 @@ jobs:
         run: |
           cd backend/form
           npm run start:dev &
-          sleep 15
+        shell: bash
+
+      - name: Wait for backend
+        run: wait-on http://localhost:4000
 
       - name: Install frontend dependencies
         run: |
@@ -49,14 +55,17 @@ jobs:
         run: |
           cd frontend/my-next-app
           npm run dev &
-          sleep 15
+        shell: bash
 
-       - name: Seed test user
+      - name: Wait for frontend
+        run: wait-on http://localhost:3000
+
+      # Optional: Seed test user for login
+      - name: Seed test user
         run: |
           curl -X POST http://localhost:4000/auth/register \
             -H "Content-Type: application/json" \
-            -d '{"email":"admin8
-            @example.com","password":"test1234"}' || true
+            -d '{"email":"admin@example.com","password":"test1234"}' || true
 
       - name: Run Cypress tests
         run: |
