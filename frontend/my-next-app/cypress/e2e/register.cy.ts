@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker';
 
 describe('Register Form', () => {
   it('registers a new user', () => {
-    cy.intercept('POST', '/auth/register').as('registerRequest');
+    cy.intercept('POST', 'http://localhost:4000/auth/register').as('registerRequest');
 
     cy.visit('/register'); // Uses baseUrl from config
     const email = faker.internet.email();

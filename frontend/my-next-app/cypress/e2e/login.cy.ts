@@ -3,7 +3,7 @@ describe('Login Form', () => {
     cy.visit('http://localhost:3000/login');
 
     // Intercept the login API call
-    cy.intercept('POST', '/auth/login').as('loginRequest');
+    cy.intercept('POST', 'http://localhost:4000/auth/login').as('loginRequest');
 
     cy.get('[data-cy="login-email"]').type('admin@example.com');
     cy.get('[data-cy="login-password"]').type('test1234');
