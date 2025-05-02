@@ -46,6 +46,12 @@ jobs:
       - name: Wait for backend
         run: wait-on http://localhost:4000
 
+      - name: Seed test user
+        run: |
+          curl -X POST http://localhost:4000/auth/register \
+            -H "Content-Type: application/json" \
+            -d '{"email":"admin@example.com","password":"test1234","role":"admin"}' || true
+
       - name: Install frontend dependencies
         run: |
           cd frontend/my-next-app
@@ -59,11 +65,7 @@ jobs:
 
       - name: Wait for frontend
         run: wait-on http://localhost:3000
-      - name: Seed test user
-        run: |
-              curl -X POST http://localhost:4000/auth/register \
-              -H "Content-Type: application/json" \
-              -d '{"email":"admin@example.com","password":"test1234","role":"admin"}' || true
+
       - name: Run Cypress tests
         run: |
           cd frontend/my-next-app
