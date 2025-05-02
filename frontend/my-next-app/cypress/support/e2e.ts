@@ -15,3 +15,10 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+before(() => {
+  cy.request('POST', 'http://localhost:4000/auth/register', {
+    email: 'admin@example.com',
+    password: 'test1234',
+    role: 'admin'
+  });
+});
