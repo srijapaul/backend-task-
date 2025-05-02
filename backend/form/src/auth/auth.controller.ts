@@ -27,7 +27,8 @@ export class AuthController {
             return res.status(201).json({ message: 'Registration successful', user });
         } catch (error) {
             console.error('Error during registration:', error);
-            return res.status(500).json({ message: 'Internal Server Error' });
+            const errRes = (error as any).response
+            return res.status(errRes.statusCode).json({ message: errRes.message });
         }
     }
    @Post('/login')
