@@ -9,7 +9,7 @@ jobs:
       mongo:
         image: mongo:6.0
         ports:
-          - 27018:27018
+          - 27017:27017
 
     steps:
       - uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
         env:
           JWT_SECRET: secret
           JWT_EXPIRES: 30d
-          MONGODB_URI: mongodb://127.0.0.1:27018/form
+          MONGODB_URI: mongodb://127.0.0.1:27017/form
 
       - name: Wait for backend
         run: wait-on http://localhost:4000
