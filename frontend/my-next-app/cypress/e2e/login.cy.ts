@@ -26,7 +26,7 @@ describe('Login Form', () => {
     });
 
     // Assert redirection to dashboard
-    cy.url({ timeout: 10000 }).should('include', '/dashboard');
+    cy.url().should('include', '/dashboard');
   });
 
   it('shows error on invalid credentials', () => {
