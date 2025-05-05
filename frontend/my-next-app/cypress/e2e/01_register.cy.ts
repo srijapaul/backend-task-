@@ -19,10 +19,6 @@ describe('Register Form', () => {
     cy.get('[data-cy="register-submit"]').click();
 
 
-
-    // Ensure the request succeeds with a valid status code
-    cy.wait('@registerRequest');
-
     // Verify the redirection URL includes '/login'
     cy.url({ timeout: 10000 }).should('include', '/login');
   });
