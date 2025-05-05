@@ -44,7 +44,7 @@ jobs:
         run: |
           curl -X POST http://127.0.0.1:4000/auth/register \
             -H "Content-Type: application/json" \
-            -d '{"email":"admin@example.com","password":"test1234","role":"admin"}' || true
+            -d '{"email":"admin21@example.com","password":"test1234","role":"admin"}' || true
             sleep 2
       - name: Test login API
         run: |
