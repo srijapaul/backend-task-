@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+//import { faker } from '@faker-js/faker';
 
 describe('Register Form', () => {
   it('registers a new user', () => {
@@ -7,15 +7,15 @@ describe('Register Form', () => {
       console.log('request',req)
     })
     cy.visit('http://localhost:3000/register'); // Uses baseUrl from config
-    const email = faker.internet.email();
-    const password = faker.internet.password();
-    const roles = ['user', 'admin'];
-    const randomRole = roles[Math.floor(Math.random() * roles.length)];
+    // const email = faker.internet.email();
+    // const password = faker.internet.password();
+    // const roles = ['user', 'admin'];
+    // const randomRole = roles[Math.floor(Math.random() * roles.length)];
 
-    cy.get('[data-cy="register-email"]').type(email);
-    cy.get('[data-cy="register-password"]').type(password);
-    cy.get('[data-cy="register-confirm"]').type(password);
-    cy.get('[data-cy="register-role"]').select(randomRole);
+    cy.get('[data-cy="register-email"]').type('admin@example.com');
+    cy.get('[data-cy="register-password"]').type('test1234');
+    cy.get('[data-cy="register-confirm"]').type('test1234');
+    cy.get('[data-cy="register-role"]').select('admin');
     cy.get('[data-cy="register-submit"]').click();
 
 
