@@ -36,6 +36,9 @@ jobs:
 
       - name: Wait for backend
         run: wait-on http://localhost:4000
+      - name: Print backend logs
+        run: |
+          cat backend/form/logs/*.log || true
 
       - name: Seed test user
         run: |
