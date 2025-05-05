@@ -21,7 +21,7 @@ describe('Register Form', () => {
 
 
     // Ensure the request succeeds with a valid status code
-   // cy.wait('@registerRequest',{timeout:10000}).its('response.statusCode').should('eq', 201);
+    cy.wait('@registerRequest');
 
     // Verify the redirection URL includes '/login'
     cy.url({ timeout: 10000 }).should('include', '/login');
