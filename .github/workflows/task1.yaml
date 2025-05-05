@@ -19,6 +19,12 @@ jobs:
         with:
           node-version: 20
 
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.10.0
+        with:
+          mongodb-version: '6.0'
+          mongodb-port: 27017     
+
       - name: Install wait-on
         run: npm install -g wait-on
 
@@ -32,7 +38,6 @@ jobs:
           cd backend/form
           npm run start:dev &
         env:
-          MONGODB_URI: mongodb://localhost:27017/form
           JWT_SECRET: secret
           JWT_EXPIRES: 30d
 
