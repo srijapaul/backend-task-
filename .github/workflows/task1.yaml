@@ -31,7 +31,8 @@ jobs:
         run: |
           cd backend/form
           npm run start:dev &
-        shell: bash
+        env:
+          MONGODB_URI: mongodb://localhost:27017/form
 
       - name: Wait for backend
         run: wait-on http://localhost:4000
