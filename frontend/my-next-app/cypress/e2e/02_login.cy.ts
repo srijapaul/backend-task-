@@ -16,7 +16,7 @@ describe('Login Form', () => {
     });
 
    
-    // Check for error messages in the UI
+    // Check for error messages in the UI to detect if an error mgs is shown anywhere on the page 
     cy.get('body').then($body => {
       if ($body.text().toLowerCase().includes('invalid') || $body.text().toLowerCase().includes('error')) {
         cy.log('Login error message found');
@@ -37,4 +37,27 @@ describe('Login Form', () => {
       expect(txt).to.match(/invalid credentials/i);
     });
   });
+
+
+  it('shows error on right email but wrong password',()=>{
+    cy.visit('/login');
+    cy.get('[data-cy="login-email"]').type('admin@example.com');
+    cy.get('[data-cy="login-password"]').type('wrongpassword');
+    cy.get('[data-cy="login-submit"]').click();
+
+    cy.on('window:alert', (txt) => {
+      expect(txt).to.match(/wrong password/i);
+    });
+  })
+
+   it('shows error on wrong email but right password',()=>{
+    cy.visit('/login');
+    cy.get('[data-cy="login-email"]').type('wrong@example.com');
+    cy.get('[data-cy="login-password"]').type('test1234');
+    cy.get('[data-cy="login-submit"]').click();
+
+    cy.on('window:alert', (txt) => {
+      expect(txt).to.match(/wrong email/i);
+    });
+  })
 });
