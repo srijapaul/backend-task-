@@ -19,7 +19,7 @@ describe('Task-Delete(ADMIN ONLY)', () => {
     cy.get('[data-cy="add-task-date"]').type(date);
     cy.get('[data-cy="add-task-submit"]').click();
 
-    cy.visit("/tasks/all");
+    cy.visit("/tasks/todo");
     cy.contains(title, { timeout: 10000 }).should("exist");
 
     // Intercept the DELETE request
