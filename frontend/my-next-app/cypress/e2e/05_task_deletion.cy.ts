@@ -21,19 +21,29 @@ describe('Task-Delete(ADMIN ONLY)', () => {
 
     cy.visit("/tasks/todo");
     cy.contains(title, { timeout: 10000 }).should("exist");
-
-    // Intercept the DELETE request
     cy.intercept('DELETE', '/task/*').as('deleteTask');
-
     cy.contains(title).parents('[data-cy="task-card"]').within(() => {
       cy.get('[data-cy="task-delete"]').should('exist').click();
     });
-
-    // Wait for the delete API call to finish
     cy.wait('@deleteTask');
     cy.reload()
-
-    // Now check that the task is gone
     cy.contains(title, { timeout: 10000 }).should('not.exist');
+  });
+});
+
+describe('Task-Delete (USER CANNOT DELETE)', () => {
+  beforeEach(() => {
+    cy.visit('/login');
+    cy.get('[data-cy="login-email"]').type('user@example.com'); // use a regular user email
+    cy.get('[data-cy="login-password"]').type('test1234');
+    cy.get('[data-cy="login-submit"]').click();
+    cy.window().its('localStorage.role').should('not.eq', 'admin');
+  });
+
+  it('user cannot see delete button on any task', () => {
+    cy.visit('/tasks/todo');
+    cy.get('[data-cy="task-card"]').each(($el) => {
+      cy.wrap($el).find('[data-cy="task-delete"]').should('not.exist');
+    });
   });
 });
